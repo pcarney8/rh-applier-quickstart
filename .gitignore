@@ -1,5 +1,5 @@
 casl-ansible
-params/secrets/
+.applier/params/secrets/
 *.retry
 
 # IntelliJ
@@ -16,8 +16,8 @@ bin
 tmp
 
 # ignore generated project request params
-params/projectrequests/*
-!params/projectrequests/project.j2
+.applier/params/projectrequests/*
+!.applier/params/projectrequests/project.j2
 
 # Python
 *.pyc
