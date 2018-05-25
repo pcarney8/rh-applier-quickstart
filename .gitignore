@@ -1,0 +1,27 @@
+casl-ansible
+params/secrets/
+*.retry
+
+# IntelliJ
+.idea
+*.iml
+target
+
+# Eclipse
+.metadata
+.settings
+.classpath
+.project
+bin
+tmp
+
+# ignore generated project request params
+params/projectrequests/*
+!params/projectrequests/project.j2
+
+# Python
+*.pyc
+
+# Ansible
+*.retry
+

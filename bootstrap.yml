@@ -1,0 +1,29 @@
+---
+- name: Bootstrap
+  hosts: bootstrap
+  vars:
+    openshift_login_url: "https://console.s9.core.rht-labs.com"
+    openshift:
+      common:
+        client_binary: "/usr/bin/oc"
+        admin_binary: "/usr/bin/oc adm"
+    dev:
+      namespace: dev
+      display_name: Dev
+  tasks:
+    - include_tasks: tasks/oc-setup.yml
+      tags:
+        - setup
+        - login
+    - include_role:
+        name: casl-ansible/roles/openshift-login
+      tags:
+        - login
+    - name: replace project request params with variables
+      template:
+        src: "{{ playbook_dir }}/params/projectrequests/project.j2"
+        dest: "{{ playbook_dir }}/params/projectrequests/{{ item.namespace }}"
+      with_items:
+        - "{{ dev }}"
+    - include_role:
+        name: openshift-applier/roles/openshift-applier

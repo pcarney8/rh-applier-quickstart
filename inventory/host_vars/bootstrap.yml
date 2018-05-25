@@ -1,0 +1,11 @@
+---
+openshift_cluster_content:
+- object: projects
+  content:
+  - name: dev
+    template: "https://raw.githubusercontent.com/redhat-cop/cluster-lifecycle/master/files/projectrequest/template.yml"
+    template_action: create
+    params: "{{ playbook_dir }}/params/projectrequests/{{ dev.namespace }}"
+    tags:
+    - projectrequests
+    - projectrequests-dev

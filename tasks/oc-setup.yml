@@ -1,0 +1,18 @@
+---
+- when: ansible_distribution == "RedHat"
+  block:
+  - name: Check Status of Subscription Manager
+    shell: subscription-manager status | grep -i current
+    register: rhsm_status
+    fail_when: rhsm_status.rc != 0
+  - name: Check to see if ose 3.7 repo is enabled
+    shell: yum repolist | grep rhel-7-server-ose-3.7-rpms
+    register: ose_repo_exists
+    ignore_errors: true
+  - name: Enable ose 3.7 repo via subscription manager
+    command: subscription-manager repos --enable=rhel-7-server-ose-3.7-rpms
+    when: ose_repo_exists != 0
+  - name: Install OC Tools
+    package:
+      name: atomic-openshift-clients
+      state: latest
