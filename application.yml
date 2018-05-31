@@ -1,0 +1,10 @@
+---
+- name: Deploy App
+  hosts: application
+  tasks:
+    - name: replace app params with variables
+      template:
+        src: "{{ playbook_dir }}/params/app/ruby.j2"
+        dest: "{{ playbook_dir }}/params/app/ruby"
+    - include_role:
+        name: openshift-applier/roles/openshift-applier
