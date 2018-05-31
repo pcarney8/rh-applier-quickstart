@@ -1,9 +1,6 @@
 ---
 - name: Deploy App
   hosts: application
-  vars:
-    dev:
-      namespace: ruby-dev
   tasks:
     - name: replace app params with variables
       template:
