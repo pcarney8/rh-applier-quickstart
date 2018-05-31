@@ -2,6 +2,9 @@ casl-ansible
 params/secrets/
 *.retry
 
+roles/*
+!roles/requirements.yml
+
 # IntelliJ
 .idea
 *.iml
@@ -18,6 +21,8 @@ tmp
 # ignore generated project request params
 params/projectrequests/*
 !params/projectrequests/project.j2
+params/app/*
+!params/app/ruby.j2
 
 # Python
 *.pyc

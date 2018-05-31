@@ -8,10 +8,6 @@ parameters:
   displayName: "BUILD_NAMESPACE"
   description: "BUILD_NAMESPACE"
   required: true
-- name: "HOSTNAME"
-  displayName: "Hostname"
-  description: "Custom hostname for http service route. Leave blank for default hostname"
-  required: true
 objects:
 - apiVersion: v1
   kind: BuildConfig
@@ -136,7 +132,6 @@ objects:
       app: ruby-ex
     name: ruby
   spec:
-    host: ${HOSTNAME}
     port:
       targetPort: 8080-tcp
     to:
